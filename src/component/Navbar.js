@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import { useHistory } from "react-router-dom"
+
 import Box from "@material-ui/core/Box"
 import Menu from "@material-ui/core/Menu"
 import Grid from "@material-ui/core/Grid"
@@ -67,6 +69,7 @@ const Navbar = ({ format, changeFormat, level, changeLevel }) => {
     const classes = useStyles()
     const { settings, saveSettings } = useSettings()
     const [settingMenu, setSettingMenu] = useState(null)
+    const history = useHistory()
 
     const handleChangeTheme = theme => {
         saveSettings({ theme })
@@ -87,7 +90,7 @@ const Navbar = ({ format, changeFormat, level, changeLevel }) => {
                 <Grid container direction="row" alignItems="center" justify="space-between">
 
                     <Grid item xs={3} container justify="center">
-                        <Button className={classes.title}>
+                        <Button className={classes.title} onClick={() => history.push("/")}>
                             React Colors
                         </Button>
                     </Grid>

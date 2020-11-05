@@ -9,6 +9,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard"
 const styles = makeStyles({
     root: {
         cursor: "pointer",
+        height: "22vh"
     },
     copyBtnContinaer: {
         flexGrow: 1,
@@ -16,11 +17,6 @@ const styles = makeStyles({
         alignItems: "center",
         marginTop: "25px",
     },
-    // copyText: {
-    //     backgroundColor: "#A9A9A9",
-    //     padding: "8px",
-    //     borderRadius: "15px"
-    // },
     BottomText: {
         color: "black",
         fontSize: "10px",

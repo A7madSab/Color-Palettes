@@ -4,11 +4,14 @@ import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { SettingsProvider } from "./contexts/SettingsContext"
 import { SnackbarProvider } from "notistack"
+import { BrowserRouter } from "react-router-dom"
 
 ReactDOM.render(
   <SettingsProvider>
     <SnackbarProvider maxSnack={4}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </SnackbarProvider>
   </SettingsProvider>,
   document.getElementById("root")
