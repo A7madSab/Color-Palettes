@@ -5,13 +5,24 @@ import clsx from "clsx"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
-import { makeStyles } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { makeStyles, useTheme } from "@material-ui/core/styles"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
 const styles = makeStyles({
     root: {
         cursor: "pointer",
         height: "22vh"
+    },
+    shadesRoot: {
+        cursor: "pointer",
+        height: "45vh"
+    },
+    smallRoot: {
+        cursor: "pointer",
+        height: "18vh"
+    },
+    empty: {
     },
     copyBtnContinaer: {
         flexGrow: 1,
@@ -64,10 +75,12 @@ const styles = makeStyles({
     }
 })
 
-const ColorBox = ({ id, paletteId, name, color }) => {
+const ColorBox = ({ id, paletteId, name, color, shades }) => {
     const classes = styles()
     const [hover, setHover] = useState(false)
     const [copied, setCopied] = useState(false)
+    const theme = useTheme()
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
     const handleSetCopy = () => {
         setCopied(true)
@@ -79,10 +92,12 @@ const ColorBox = ({ id, paletteId, name, color }) => {
             <Grid
                 item
                 xs={12}
-                sm={6}
+                sm={4}
                 md={2}
                 container
-                className={classes.root}
+                className={shades
+                    ? clsx(classes.shadesRoot, !matches ? classes.smallRoot : classes.empty)
+                    : clsx(classes.root, !matches ? classes.smallRoot : classes.empty)}
                 style={{ backgroundColor: color }}
                 direction="column"
                 justify="space-between"
@@ -112,13 +127,15 @@ const ColorBox = ({ id, paletteId, name, color }) => {
                     <Grid item>
                         <Typography className={classes.BottomText}>{name}</Typography>
                     </Grid>
-                    <Grid item>
-                        <Link to={`/palette/${paletteId}/${id}`} onClick={e => e.stopPropagation()}>
-                            <Button variant="text" className={classes.BottomBtn}>
-                                More
+                    {
+                        !shades && <Grid item>
+                            <Link to={`/palette/${paletteId}/${id}`} onClick={e => e.stopPropagation()}>
+                                <Button variant="text" className={classes.BottomBtn}>
+                                    More
                             </Button>
-                        </Link>
-                    </Grid>
+                            </Link>
+                        </Grid>
+                    }
                 </Grid>
             </Grid>
         </CopyToClipboard >

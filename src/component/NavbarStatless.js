@@ -15,6 +15,7 @@ import SettingsIcon from "@material-ui/icons/Settings"
 import LanguageIcon from "@material-ui/icons/Language"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
+import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import { makeStyles } from "@material-ui/core/styles"
 
 import useSettings from "../hooks/useSettings"
@@ -31,10 +32,8 @@ const useStyles = makeStyles((theme) => ({
     },
     appbar: {
         margin: 0,
-        marginBottom: theme.spacing(4)
     },
     title: {
-        color: "black",
     },
     themeOneButton: {
         backgroundColor: "#ff9800",
@@ -59,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const Navbar = () => {
+const Navbar = ({ back }) => {
     const classes = useStyles()
     const { settings, saveSettings } = useSettings()
     const [settingMenu, setSettingMenu] = useState(null)
@@ -84,7 +83,12 @@ const Navbar = () => {
                 <Grid container direction="row" alignItems="center" justify="space-between">
 
                     <Grid item xs={3} container justify="center">
-                        <Button className={classes.title} onClick={() => history.push("/")}>
+                        {
+                            back && <IconButton onClick={() => history.goBack()}>
+                                <ArrowBackIcon />
+                            </IconButton>
+                        }
+                        <Button className={classes.title} onClick={() => history.push()}>
                             React Colors
                         </Button>
                     </Grid>

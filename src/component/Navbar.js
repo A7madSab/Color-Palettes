@@ -15,6 +15,7 @@ import MenuItem from "@material-ui/core/MenuItem"
 import IconButton from "@material-ui/core/IconButton"
 import SettingsIcon from "@material-ui/icons/Settings"
 import LanguageIcon from "@material-ui/icons/Language"
+import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import { makeStyles } from "@material-ui/core/styles"
@@ -36,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
         margin: 0,
     },
     title: {
-        color: "black",
     },
     themeOneButton: {
         backgroundColor: "#ff9800",
@@ -94,6 +94,9 @@ const Navbar = ({ format, changeFormat, level, changeLevel }) => {
                 <Grid container direction="row" alignItems="center" justify="space-between">
 
                     <Grid item xs={3} container justify="center">
+                        <IconButton onClick={() => history.goBack()}>
+                            <ArrowBackIcon />
+                        </IconButton>
                         <Button className={classes.title} onClick={() => history.push("/")}>
                             React Colors
                         </Button>
@@ -114,7 +117,7 @@ const Navbar = ({ format, changeFormat, level, changeLevel }) => {
                             className={classes.slider}
                         />
                     </Grid>
-                    
+
                     <Grid item xs={3} container justify="center">
                         <Select value={format} onChange={changeFormat} className={classes.select}>
                             <MenuItem value="hex">HEX - #ffff</MenuItem>

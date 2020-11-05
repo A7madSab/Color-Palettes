@@ -8,6 +8,7 @@ import { createTheme } from "./theme"
 import { Route, Switch } from "react-router-dom"
 import Palette from "./screens/Palette"
 import PaletteList from "./screens/PaletteList"
+import SingleColorPalette from "./screens/SingleColorPalette"
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] })
 
@@ -47,7 +48,7 @@ const App = () => {
             />
             <Route
               path="/palette/:paletteId/:colorId"
-              render={() => <h1>asdn</h1>}
+              render={routeProps => <SingleColorPalette colorId={routeProps.match.params.colorId} {...generatePalette(findPalette(routeProps.match.params.paletteId))} />}
             />
           </Switch>
         </StylesProvider>
