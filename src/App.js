@@ -6,8 +6,8 @@ import seedColor from "./seedColor"
 import generatePalette from "./utils/ColorHelper"
 import { createTheme } from "./theme"
 import { Route, Switch } from "react-router-dom"
-import Palette from "./component/Palette"
-import PaletteList from "./component/PaletteList"
+import Palette from "./screens/Palette"
+import PaletteList from "./screens/PaletteList"
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] })
 

@@ -3,9 +3,9 @@ import { useSnackbar } from "notistack"
 
 import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/core/styles"
-import ColorBox from "./ColorBox"
-import Navbar from "./Navbar"
-import Footer from "./Footer"
+import ColorBox from "../component/ColorBox"
+import Navbar from "../component/Navbar"
+import Footer from "../component/Footer"
 
 const styles = makeStyles({
     palleteColors: {

@@ -7,8 +7,6 @@ import Menu from "@material-ui/core/Menu"
 import Grid from "@material-ui/core/Grid"
 import AppBar from "@material-ui/core/AppBar"
 import Button from "@material-ui/core/Button"
-import Slider from "@material-ui/core/Slider"
-import Select from "@material-ui/core/Select"
 import Toolbar from "@material-ui/core/Toolbar"
 import Divider from "@material-ui/core/Divider"
 import MenuItem from "@material-ui/core/MenuItem"
@@ -19,7 +17,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import { makeStyles } from "@material-ui/core/styles"
 
-import ValueLabelComponent from "../component/ValueLabelComponent"
 import useSettings from "../hooks/useSettings"
 import { THEMES } from "../theme/constants"
 
@@ -34,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appbar: {
         margin: 0,
+        marginBottom: theme.spacing(4)
     },
     title: {
         color: "black",
@@ -58,18 +56,10 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 8,
         margin: 5,
         borderStyle: "solid"
-    },
-    slider: {
-        width: "75%",
-        color: "black"
-    },
-    select: {
-        width: "75%",
-        color: "black"
     }
 }))
 
-const Navbar = ({ format, changeFormat, level, changeLevel }) => {
+const Navbar = () => {
     const classes = useStyles()
     const { settings, saveSettings } = useSettings()
     const [settingMenu, setSettingMenu] = useState(null)
@@ -99,29 +89,6 @@ const Navbar = ({ format, changeFormat, level, changeLevel }) => {
                         </Button>
                     </Grid>
 
-                    <Grid item xs={3} container justify="center">
-                        <Slider
-                            ValueLabelComponent={ValueLabelComponent}
-                            value={level}
-                            onChange={changeLevel}
-                            aria-label="custom thumb label"
-                            valueLabelDisplay="auto"
-                            defaultValue={level}
-                            step={100}
-                            marks
-                            min={100}
-                            max={900}
-                            className={classes.slider}
-                        />
-                    </Grid>
-                    
-                    <Grid item xs={3} container justify="center">
-                        <Select value={format} onChange={changeFormat} className={classes.select}>
-                            <MenuItem value="hex">HEX - #ffff</MenuItem>
-                            <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
-                            <MenuItem value="rgba">RGBA - rgb(255,255,255, 1.0)</MenuItem>
-                        </Select>
-                    </Grid>
 
                     <Grid item xs={3} container justify="center">
                         <IconButton onClick={handleClick}>
