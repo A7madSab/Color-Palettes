@@ -15,7 +15,7 @@ const styles = makeStyles({
 
 const Palette = ({ id, emoji, paletteName, colors }) => {
     const classes = styles()
-
+    const paletteId = id
     const [level, setLevel] = useState(500)
     const [format, setFormat] = useState("hex")
     const { enqueueSnackbar } = useSnackbar()
@@ -31,9 +31,11 @@ const Palette = ({ id, emoji, paletteName, colors }) => {
             <Navbar format={format} changeFormat={changeFormat} level={level} changeLevel={changeLevel} />
             <div className={classes.root}>
                 <Grid className={classes.palleteColors} container direction="row">
-                    {colors[level].map(({ name, hex, rgb, rgba }, key) => {
+                    {colors[level].map(({ id, name, hex, rgb, rgba }, key) => {
                         return (
                             <ColorBox
+                                id={id}
+                                paletteId={paletteId}
                                 key={key}
                                 name={name}
                                 color={format === "hex"

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import { useState } from "react"
 import clsx from "clsx"
 import Grid from "@material-ui/core/Grid"
@@ -62,7 +64,7 @@ const styles = makeStyles({
     }
 })
 
-const ColorBox = ({ name, color }) => {
+const ColorBox = ({ id, paletteId, name, color }) => {
     const classes = styles()
     const [hover, setHover] = useState(false)
     const [copied, setCopied] = useState(false)
@@ -111,9 +113,11 @@ const ColorBox = ({ name, color }) => {
                         <Typography className={classes.BottomText}>{name}</Typography>
                     </Grid>
                     <Grid item>
-                        <Button className={classes.BottomBtn}>
-                            More
-                        </Button>
+                        <Link to={`/palette/${paletteId}/${id}`} onClick={e => e.stopPropagation()}>
+                            <Button variant="text" className={classes.BottomBtn}>
+                                More
+                            </Button>
+                        </Link>
                     </Grid>
                 </Grid>
             </Grid>

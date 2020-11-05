@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
@@ -30,9 +30,9 @@ const useStyles = makeStyles({
 
 const MiniPalette = ({ id, paletteName, colors, emoji }) => {
     const classes = useStyles()
-
+    const history = useHistory()
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} onClick={() => history.push(`/palette/${id}`)}>
             <CardContent>
                 <Grid container className={classes.colorContainer}>
                     {colors.map((color, key) => (
@@ -43,9 +43,7 @@ const MiniPalette = ({ id, paletteName, colors, emoji }) => {
             <CardContent>
                 <Grid container justify="space-between">
                     <Grid item>
-                        <Link to={`/palette/${id}`}>
-                            <Typography color="textPrimary">{paletteName}</Typography>
-                        </Link>
+                        <Typography color="textPrimary">{paletteName}</Typography>
                     </Grid>
 
                     <Grid item>

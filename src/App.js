@@ -45,6 +45,10 @@ const App = () => {
               path="/palette/:id"
               render={routeProps => <Palette {...generatePalette(findPalette(routeProps.match.params.id))} />}
             />
+            <Route
+              path="/palette/:paletteId/:colorId"
+              render={() => <h1>asdn</h1>}
+            />
           </Switch>
         </StylesProvider>
       </ThemeProvider>
